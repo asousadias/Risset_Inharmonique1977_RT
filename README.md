@@ -2,7 +2,9 @@
 Repository for realtime version of Jean-Claude Risset's Inharmonique, 1977, for soprano and tape
 
 Developed by:
+
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt
+
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
 
