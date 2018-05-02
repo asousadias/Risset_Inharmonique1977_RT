@@ -49,6 +49,7 @@ setoutletassist(0,"output general messages");
 //                global variables and arrays 
 // =============================================================
 autowatch = 1;
+var verbose = 0;
 
 // 
 var p = this.patcher;
@@ -389,15 +390,15 @@ function plfProcess( i, icmmand ) {
 				for( var k = K1; k<11; k++) plf_p[ k ] = 0;
 			};
 			var iIC = 0;
-			var iNC = plf_p[ 3 ]; 	// original : NC = P(4)
-			var iIADR = plf_p[ 4 ];	// original : IADR = P(5)
-			var iFREQ = plf_p[ 5 ]; // original : FREQ = P(6)
-			var iAMP = plf_p[ 6 ]; 	// original : AMP = P(7)
-			var iFUN = plf_p[ 7 ]; 	// original : FUN = P(8)
-			var iFIN = plf_p[ 8 ]; 	// original : FIN = P(9)
-			var iAINS = plf_p[ 9 ]; // original : AINS = P(10)
+			var iNC = plf_p[ 3 ]; 	// original : NC = P(4) // Score = 8
+			var iIADR = plf_p[ 4 ];	// original : IADR = P(5) // Score = 1080
+			var iFREQ = plf_p[ 5 ]; // original : FREQ = P(6)  // Score = 0
+			var iAMP = plf_p[ 6 ]; 	// original : AMP = P(7)  // Score = 0
+			var iFUN = plf_p[ 7 ]; 	// original : FUN = P(8)  // Score = 0
+			var iFIN = plf_p[ 8 ]; 	// original : FIN = P(9)  // Score = 0
+			var iAINS = plf_p[ 9 ]; // original : AINS = P(10)  // Score = 0
 
-			if( iFREQ == 0 ) iFREQ = structure[ iIADR ].frer; // D[ iADR + 2];
+			if( iFREQ == 0 ) iFREQ = structure[ iIADR ].frer; // D[ iADR + 2];  // SV1 = 506
 
 			// Set amplitude factor: specidfied ampl/reached ampl
 			if( iAMP == 0 ) iAMP = structure[ iIADR ].amp2 / structure[ iIADR ].amp1; // D[ iADR + 1] / D[ iADR ];
@@ -417,9 +418,10 @@ function plfProcess( i, icmmand ) {
 			//if( i_p[ 0 ] != 1 ) break; // GOTO 1000 - error routine // if it's not a NOT
 			
 			i_p[ 4 ] = i_p[ 4 ] * iAMP; // P(5) = ...
+			
 			iFRE = i_p[ 5 ] / iFREQ ; // P(6)...
 			i_p[ 5 ] = structure[ iIADR ].fund * iFRE * iFUN; // D[ iIADR + 4 ] // P(6) = ...
-			i_p[ 2 ] = iAINS ; // P(3) = ...-- REVERIFICAR MUSIC v -> Csound
+			i_p[ 1 ] = iAINS ; // P(3) = ..
 			i_p[ 6 ] = 0 ; // P(7) = ..
 			i_p[ 7 ] = 0 ; // P(8) = ..
 			i_p[ 8 ] = 0 ; // P(9) = ..
