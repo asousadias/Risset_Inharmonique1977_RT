@@ -82,25 +82,6 @@ function loadbang(  ) {
 
 	init();
 
-
-/***************************
-    // LOAD PLF SV1 DATA
-    // Prepare to load PLF5 data through the MAX window
-    // change the reference of the coll to  'plf6_data.txt'
-    js_coll.message("refer", "plf5_data.txt");
-    // dump 'plf5_data.txt' into this patch through the function 'loadPLFdata'
-    js_mess.message("set", "dump");
-    js_mess.message("bang");
-    // js_mess.message("set"); // clear the message
-
-	// Prepare to load PLF6 data through the MAX window
-	// change the reference of the coll to  'plf6_data.txt'
-	js_coll.message("refer", "plf6_data.txt");
-	// dump 'plf6_data.txt' into this patch through the function 'loadPLFdata'
-	js_mess.message("set", "dump");	
-	js_mess.message("bang");
-	js_mess.message("set"); // clear the message
-	*****************************/
 }
 // =============================================================
 function init(  ) {
@@ -185,8 +166,8 @@ function eventProcess(  ) {
 				case 5:
 					// num_plf, num_events, num_struct
 					plfRoutine.newRoutine( ar_args[ 1 ], ar_args[ 3 ], ar_args[ 4 ]);
-					//structure[ 0 ] = new Object();
-					//structure.struct_plf5( plf_p );
+					structure[ 0 ] = new Object();
+					structure.struct_plf5( plf_p );
 					break;
 
 					
@@ -400,11 +381,12 @@ function plfProcess( i, icmmand ) {
              // JEAN-CLAUDE RISSET - VOXN1: Inharmonique(VOXN1(1...3))
 			************************************************/
 			
-/* test coding -- not finished yet -- verificar bases zero ou um (k--)
+			//* test coding -- not finished yet -- verificar bases zero ou um (k--)
 			// 
+			var PFNBR = plf_p.length;
 			if( PFNBR < 10 ) {
-				K1 = PFNBR + 1;
-				for( var k = K1, k<11; k++) plf_p[ k ] = 0;
+				var K1 = PFNBR + 1;
+				for( var k = K1; k<11; k++) plf_p[ k ] = 0;
 			};
 			var iIC = 0;
 			var iNC = plf_p[ 3 ]; 	// original : NC = P(4)
@@ -415,48 +397,49 @@ function plfProcess( i, icmmand ) {
 			var iFIN = plf_p[ 8 ]; 	// original : FIN = P(9)
 			var iAINS = plf_p[ 9 ]; // original : AINS = P(10)
 
-			if( iFREQ == 0 ) iFREQ = D[ iADR + 2];
+			if( iFREQ == 0 ) iFREQ = structure[ iIADR ].frer; // D[ iADR + 2];
 
 			// Set amplitude factor: specidfied ampl/reached ampl
-			if( iAMP == 0 ) iAMP = D[ iADR + 1] / D[ iADR ];
+			if( iAMP == 0 ) iAMP = structure[ iIADR ].amp2 / structure[ iIADR ].amp1; // D[ iADR + 1] / D[ iADR ];
 
 			// Set mult factor for lowest pitch
 			if( iFUN == 0 ) iFUN = 1;
 			// Set mult factor for all increments
 			if( iFIN == 0 ) iFIN = 1;
 			// Set inst no
-			if( iAINS == 0 ) iAINS = D[ iADR + 3];
+			if( iAINS == 0 ) iAINS = structure[ iIADR ].i_num; // D[ iADR + 3];
 			
 			// original code repeated
 
 			// 505 	CONTINUE	// Loop de leitura de NOTs
 			//		CALL READ
-			
-			if( i_p[ 0 ] != 1 ) break; // GOTO 1000 - error routine // if it's not a NOT
+			// post("Is not a NOT",i_p[ 0 ], ".\n");
+			//if( i_p[ 0 ] != 1 ) break; // GOTO 1000 - error routine // if it's not a NOT
 			
 			i_p[ 4 ] = i_p[ 4 ] * iAMP; // P(5) = ...
 			iFRE = i_p[ 5 ] / iFREQ ; // P(6)...
-			i_p[ 5 ] = D[ iIADR + 4 ] * iFRE * iFUN; // P(6) = ...
+			i_p[ 5 ] = structure[ iIADR ].fund * iFRE * iFUN; // D[ iIADR + 4 ] // P(6) = ...
 			i_p[ 2 ] = iAINS ; // P(3) = ...-- REVERIFICAR MUSIC v -> Csound
 			i_p[ 6 ] = 0 ; // P(7) = ..
 			i_p[ 7 ] = 0 ; // P(8) = ..
 			i_p[ 8 ] = 0 ; // P(9) = ..
-			i_p[ 9 ] = D[ iIADR + 5 ] * iFRE * iFIN; // P(10) = ...
-			i_p[ 10 ] = D[ iIADR + 5 ] * iFRE * iFIN; // P(11) = ...
-			i_p[ 11 ] = D[ iIADR + 6 ] * iFRE * iFIN; // P(12) = ...
-			i_p[ 12 ] = D[ iIADR + 7 ] * iFRE * iFIN; // P(13) = ...
-			i_p[ 13 ] = D[ iIADR + 8 ] * iFRE * iFIN; // P(14) = ...
+			i_p[ 9 ] = structure[ iIADR ].comp[ 0 ] * iFRE * iFIN; // D[ iIADR + 5 ] * iFRE * iFIN; // P(10) = ...
+			i_p[ 10 ] = structure[ iIADR ].comp[ 1 ] * iFRE * iFIN;  // D[ iIADR + 5 ] * iFRE * iFIN; // P(11) = ...
+			i_p[ 11 ] = structure[ iIADR ].comp[ 2 ] * iFRE * iFIN;  // D[ iIADR + 6 ] * iFRE * iFIN; // P(12) = ...
+			i_p[ 12 ] = structure[ iIADR ].comp[ 3 ] * iFRE * iFIN;  // D[ iIADR + 7 ] * iFRE * iFIN; // P(13) = ...
+			i_p[ 13 ] = structure[ iIADR ].comp[ 4 ] * iFRE * iFIN; // D[ iIADR + 8 ] * iFRE * iFIN; // P(14) = ...
 			
 			PFNBR = 14;
 			
 			// CALL WRITE
 			outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ], i_p[ 6 ], i_p[ 7 ], i_p[ 8 ], i_p[ 9 ], i_p[ 10 ], i_p[ 11 ], i_p[ 12 ], i_p[ 13 ]);
- 
+
+ 			/* Set condition for main loop - not needed in this version */
 			iIC = iIC + 1;
 			if( (iIC - iNC) < 0 ) {
 				// GOTO 505 Continue
 			};
-*/			
+						
 			break;
 		case 66:
 			/************************************************
@@ -881,25 +864,3 @@ function newRoutine( num_plf, num_events, num_struct ) {
 	this[ num_plf ].structure = num_struct;
 	this[ num_plf ].active = num_events;	
 }
-// =============================================================
-function loadStructure1280( ) {
-// =============================================================
-	// for testing pourposes
-	structure[ 1280 ] = new Object();
-	structure.struct_plf6( 1280, 9, 975, 349, 3 );
-	structure.struct_plf6_comp( 1280, 0 , 675, 24, 200 );
-	structure.struct_plf6_comp( 1280, 1, 124,16, 200 );
-	structure.struct_plf6_comp( 1280, 2, 346, 22, 200 );
-	structure.struct_plf6_comp( 1280, 3, 1108, 17, 200 );
-	structure.struct_plf6_comp( 1280, 4, 1634, 6, 200 );
-	structure.struct_plf6_comp( 1280, 5, 2249, 3, 200 );
-	structure.struct_plf6_comp( 1280, 6, 2941, 2, 200 );
-	structure.struct_plf6_comp( 1280, 7, 3700, 1.5, 200 );
-	structure.struct_plf6_comp( 1280, 8, 4504, 0.8, 200 );
-	
-	for( var i in structure[ 1280 ].comp ) {
-		structure[ 1280 ].durMax = Math.max(structure[ 1280 ].comp[ i ].dur , structure[ 1280 ].durMax );
-	}
-	
-}
-

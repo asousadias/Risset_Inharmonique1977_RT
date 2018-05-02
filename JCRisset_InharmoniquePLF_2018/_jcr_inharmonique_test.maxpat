@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 399.0, 81.0, 1246.0, 880.0 ],
+		"rect" : [ 354.0, 79.0, 1246.0, 880.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -438,7 +438,7 @@
 					"patching_rect" : [ 647.0, 58.0, 595.0, 35.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 2,
-					"presentation_rect" : [ 655.0, 48.0, 529.0, 35.0 ],
+					"presentation_rect" : [ 655.0, 48.0, 533.0, 35.0 ],
 					"style" : "",
 					"text" : "plf 4 0 1 10 0.1 1 0 4 2 3 5 8 7 6 10 9 11 0 2 2 4 3.5 4 1 3.5 3 4, i 25 0 0.8 300 329, plf 4 0 2 10 0.1 1 0 4 2 3 5 6 8 7 9 10 11 0 2 3 2 4 3 4 4 2 3, i 25 0 0.7 400 277, i 25 0 0.7 300 174"
 				}
@@ -539,10 +539,10 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 640.0, 687.0, 628.0, 156.0 ],
+					"patching_rect" : [ 640.0, 687.0, 632.0, 156.0 ],
 					"presentation" : 1,
 					"presentation_linecount" : 12,
-					"presentation_rect" : [ 655.0, 308.0, 602.0, 169.0 ],
+					"presentation_rect" : [ 655.0, 308.0, 605.0, 169.0 ],
 					"style" : "",
 					"text" : "plf 6 0 3 1280, i 1 1 4 400 392, i 1 1.2 4 400 207, i 1 1.4 4 400 446, plf 6 0 5 1360, i 1 1.55 0 600 233, i 1 11 0 200 659, i 1 12.5 0 200 740, i 1 20.5 0 200 466, i 1 35 0 500 440, plf 6 0 4 1400, i 1 8 0 300 233, i 1 12 0 200 440, i 1 21.2 0 100 466, i l 35.02 0 500 881, plf 6 0 1 1250, i 1 14 0 600 370, plf 6 0 1 1320, i 1 19 0 600 587, plf 6 0 2 1210, i 1 24 0 1000 220, i 1 27 0 300 554, plf 6 0 1 1250, i 1 27.3 0 200 800, plf 6 0 2 1320, i 1 35.09 0 800 554, i 1 50 0 1200 587, plf 6 0 1 1550, i 1 42 0 600 659, plf 6 0 1 1600, i 1 43.5 0 600 659.2, plf 6 0 1 1525, i 1 47 0 800 784, plf 6 0 1 1500, i 1 62 0 700 880, plf 6 0 1 1550, i 1 62.4 0 400 700, plf 6 0 1 1650, i 1 66 0 800 1650, plf 6 0 6 1280, i 1 72 6 300 466, i 1 72.15 6 300 329, i 1 72.3 6 300 207, i 1 72.4 8 300 277, i 1 72.5 10 300 147, i 1 72.55 6 300 698, plf 6 0 1 1210, i 1 75 0 400 698, plf 6 0 1 1400, i 1 76.6 0 600 466, plf 6 0 1, i 1 77 0 600 207, plf 6 0 1 1625, i 1 80 13 600 660, plf 6 0 1 1800, i 1 84 0 1200 69, plf 6 0 4 1250, i 1 100 0 300 370, i 1 100.2 0 300 415, i 1 104 0 200 587, i 1 107.5 0 700 493, plf 6 0 1 1400, i 1 100.7 0 200 659, plf 6 0 1 1525, i 1 101.3 0 200 784, plf 6 0 1 1500, i 1 102 0 300 1244, plf 6 0 1 1650, i 1 104.2 0 600 1480, plf 6 0 1 1550, i 1 106 0 600 698, plf 6 0 1 1210, i 1 110 30 900 110"
 				}
@@ -1633,14 +1633,14 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "csound_eventProcPLF.js",
-				"bootpath" : "~/Dropbox/ucp_citar/JC_RISSET_inharmonique/_JCRisset_InharmoniquePLF_2018",
+				"bootpath" : "~/Documents/GitHub/Risset_Inharmonique1977_RT/JCRisset_InharmoniquePLF_2018",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "plfSV_data.txt",
-				"bootpath" : "~/Dropbox/ucp_citar/JC_RISSET_inharmonique/_JCRisset_InharmoniquePLF_2018",
+				"bootpath" : "~/Documents/GitHub/Risset_Inharmonique1977_RT/JCRisset_InharmoniquePLF_2018",
 				"patcherrelativepath" : ".",
 				"type" : "TEXT",
 				"implicit" : 1
