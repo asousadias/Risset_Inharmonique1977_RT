@@ -49,13 +49,13 @@ setoutletassist(0,"output general messages");
 //                global variables and arrays 
 // =============================================================
 autowatch = 1;
-var verbose = 0;
 
-// 
+// patch variables for coll communication
 var p = this.patcher;
 var js_coll = p.getnamed("coll2js"); // coll object containing structures
 var js_mess = p.getnamed("mess2js"); // assign messages to be sent to the coll object
 
+// subroutines and methods definition
 var plfRoutine = new Array;
 	plfRoutine.newRoutine = newRoutine;
 	for( var i = 0; i <7; i++) plfRoutine.newRoutine( i, 0, 0);
@@ -115,8 +115,6 @@ function e(  ) {
 // =============================================================
 function eventProcess(  ) {
 // =============================================================
-	post("EVNT PRCSS:",arrayfromargs( arguments[ 0 ] ),"\n"); // just for control - can be commented
-
 	// Set the array ar_args to "event" list
 	var ar_args = new Array;	
 	// Fill 'ar_args' with input parameters
@@ -147,12 +145,10 @@ function eventProcess(  ) {
 		case "plf":
 			// load plf card
 			plfCorr = ar_args[ 1 ]; // Set plfCorr to current PLF
-			post("EVNT PRCSS: PLF",plfCorr,":<",ar_args,">\n");
 			
 			// Set PLF card to array plf_p[]
 			plf_p = new Array;
 			for( var i in ar_args ) plf_p[ i ] = ar_args[ i ];
-			post("EVNT PRCSS: PLF",plfCorr," card <",plf_p, ">\n"); // just for control - can be commented
 			
 			// Init PLF parameters
 			switch(  plfCorr ) {
@@ -259,9 +255,22 @@ function plfProcess( i, icmmand ) {
 		
 		
 		case 4:
-			// p59 (du rapport)
 			/************************************************
-			[Original comments:]
+			// Description in Lorrain 1980, p23 & p59
+			
+			P(4) - "nombre de NOT"
+			P(5) - "X = nombre d'harm. par NOT"
+			P(6) - "unité de temps"
+			P(7) - "gain par harm."
+			P(8) - "décr. de durée"
+			P( 9 ... 9+(X-1) ) - "X numéros d'armoniques"
+			P( 9+X ... (9+2*X-1) ) - "X incréments de temps d'attaque (par unités de temps)"
+
+			
+			************************************************/
+
+			/************************************************
+			[Original comments: lines 00082 to 00092]
 			****** PLF 4 for overtones dvpt cf dialogues luminy *******
 			USES LOCATIONS D(1965) TO D(2000)
 			CALL: PLF 0 4 NC N UNIT INT DURD FREQUFACTORS(10) ACTIME INCRTS (10)
@@ -275,87 +284,68 @@ function plfProcess( i, icmmand ) {
 			10 FIELDS FOR UP TO TO ACTION TIME INCREMENTS			
 						
 			************************************************/
-/* test coding -- not finished yet
 			var iIC = 0;
 			var iNC = 1;
-			var iISUB = D[2000] ; // ??
+			var iISUB = 0 ; // D[2000] - value representing a flag <= 0 do code
+			var iD = new Array(); //
+			
 			if( iISUB <= 0 ) {
 				iNC = plf_p[ 3 ]; // original : NC = P(4)
-				iN = plf_p[ 4 ];  //            N = P(5) etc.
+				iN = plf_p[ 4 ];  // original :  N = P(5) etc.
 				iFLAG = 1;
 				if( iN <0 ) {
 					iN = -iN;
 					iFLAG = -iFLAG;				
 				};
-				D[1965] = iFLAG;
-				D[1966] = iN;
-				for( j = 6; j<30; j++) {
-					iJJ = 1961 + j;
-					D[ iJJ ] = plf_p[ j ];				
+				iD1965 = iFLAG; // D[1965] = iFLAG
+				iD1966 = iN;				
+				//
+				iD1967 = plf_p[ 5 ];
+				iD1968 = plf_p[ 6 ];
+				iD1969 = plf_p[ 7 ];
+				// the next FOR is adapted to fill values in an array D starting at 0 and not at ADR = 1961+6 = 1967
+				var iD = Array(2*iN);
+				for( var j = 0; j<2*iN; j++) {
+					iD[ j ] = plf_p[ j + 8 ];				
 				};
-				if( iNC > 0  ) {
-					// 402 CALL READ
-					//     CALL WRITE
-					// 	   IF(P(1).NE.1)GO TO 402
 				
-				};			
+				if( iNC < 0  ) break;
+				// 402 CALL READ - NOT card read
+				//     CALL WRITE - NOT card Write
+				outlet(0, "toCsound", "event", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] ); // to REVISE
+				// 	   IF(P(1).NE.1)GO TO 402 // read cards and write them as long they are not NOT cards							
 			};
 			
 			// C ENTREE PAR SOUS PROGRAMME
 			// 403
-			iF = plf_p[ 5 ]; // original : F = P(6)
-			iN = D[1966];
-			iFLAG = D[1965];
-			for( var j = 1; j < iN ; j++) {
-				iJJ = j + 1969;
+			iF = i_p[ 5 ]; // original : F = P(6)
+			iN = iD1966; // original : N = D(1966)
+			iFLAG = iD1965; // original : FLAG = D(1965)
+			
+			for( var j = 0; j < iN ; j++) {
+				// original : iJJ = j + 1969; // not needed
 				if( iFLAG >= 0 ) {
-					i_p[ 5 ] = iF * D[iJJ]; // P(6)
+					i_p[ 5 ] = iF * iD[j]; // P(6)
 				} else {
-					i_p[ 5 ] = iF / D[iJJ]; // P(6)
+					i_p[ 5 ] = iF / iD[j]; // P(6)
 				};
-				iJJJ= iJJ + 11;
-				i_p[ 1 ] = D[1967] * D[iJJJ] + i_p[ 1 ];
-				i_p[ 4 ] = i_p[ 4 ] * D[ 1968 ];
-				i_p[ 3 ] = i_p[ 3 ] - D[ 1969 ];
+				var iJJJ= j + iN;
+				i_p[ 2 ] = iD1967 * iD[iJJJ] + i_p[ 2 ];  // original : P(2) = D(1967) * D(iJJJ) + P(2)
+				i_p[ 4 ] = i_p[ 4 ] * iD1968;  // original : P(5) = P(5) * D(1968)
+				i_p[ 3 ] = i_p[ 3 ] - iD1969;  // original : P(4) = P(4) - D(1969)
 				// CALL WRITE
+				outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
 			};
+			
+			// not needed
 			iIC = iC + 1;
 			if( (iIC - iNC) < 0 ) {
 				// GOTO 402 
 				};
 			break;
 
-
-
-*/
-
-
-			var num_comp = structure[ 0 ].num_comp;
-			// note parameters
-			// 
-			var iinstr_num = i_p[ 1 ];  // p1
-			var iinstr_str = i_p[ 2 ];
-			var iinstr_dur = i_p[ 3 ];
-			var iinstr_amp = i_p[ 4 ];
-			var iinstr_frq = i_p[ 5 ];  // p5
-			
-			var iinstr_strI = iinstr_str;
-			var iinstr_durI = iinstr_dur;
-			var iinstr_ampI = iinstr_amp * structure[0].gain_harm;
-			var iinstr_frqI;
-			
-			for( var i = 0; i < num_comp; i++) {
-				iinstr_strI += ( structure[0].comp[i].t  * structure[0].time_un );
-				iinstr_durI -= structure[0].length_dec;
-				iinstr_frqI = iinstr_frq * structure[0].comp[i].n;
-				outlet(0, "toCsound", "event", "i", iinstr_num, iinstr_strI, iinstr_durI, iinstr_ampI, iinstr_frqI );	
-			};
-			post("PLF ",ar_args[ 0 ], " in action.\n");
-			break;
 			
 		case 5:
-			//
-			post("PLF ",ar_args[ 0 ], " in action.\n");
  			/************************************************
 			[Original comments: lines 00133 to 00152]
 			****** PLF 5 for textures ct freq difference *******
@@ -414,8 +404,7 @@ function plfProcess( i, icmmand ) {
 
 			// 505 	CONTINUE	// Loop de leitura de NOTs
 			//		CALL READ
-			// post("Is not a NOT",i_p[ 0 ], ".\n");
-			//if( i_p[ 0 ] != 1 ) break; // GOTO 1000 - error routine // if it's not a NOT
+			//if( i_p[ 0 ] != "i" ) break; // GOTO 1000 - error routine // if it's not a NOT
 			
 			i_p[ 4 ] = i_p[ 4 ] * iAMP; // P(5) = ...
 			
@@ -469,9 +458,7 @@ function plfProcess( i, icmmand ) {
 			Note: different from Lorrain's PLF 6 Inharmonique description
 			
 			************************************************/
-			
-			post("PLF ",ar_args[ 0 ]," [ ", plfRoutine[ ar_args[ 0 ] ].structure,", ", plfRoutine[ ar_args[ 0 ] ].active,"] in action: ",ar_args[ 1 ],"\n");
-			
+						
 			var iC = 0; // NOT NEEDED
 			// Data from PLF6 card
 			var iNC = plf_p[ 3 ]; // original : NC = P(4)  // NOT NEEDED HERE
@@ -606,9 +593,18 @@ function plfProcess( i, icmmand ) {
 			break;
 			
 		case 7:
-			//
-			post("PLF ",ar_args[ 0 ], " in action.\n");
-			// page cit in rapport:  Inharmonique(LBll13(1))
+			/************************************************
+			// Lorrain 1980: p6 Inharmonique(LBll13(1))
+			P(4) - "le nombre d'énoncés NOT affectés, suivant imédiatement l'appel,"			
+			P(5) - "le nombre d'énoncés NOT à ajouter pour chaque énoncé NOT donné,"
+			P(6) - "un intervale de temps séparant les énoncés sucessifs ajoutés,
+					à partir du 'temps d'action' des NOT donnés,"
+			P(7) - "un décrement de durée des énoncés successifs ajoutés, par rapport
+					à la durée des NOT données,"
+			P(8) - "une valeur sélectionnant une option dans la PLF,"
+			P(9) - "une valeur concernant les amplitudes ('gain')."
+			
+			************************************************/
 			/************************************************
 			[Original comments:]
 			Pour repetitions, decalages, dvpts harmoniques
@@ -626,8 +622,6 @@ function plfProcess( i, icmmand ) {
 			Si GAIN non nul composantes success multipl par GAIN
 						
 			************************************************/
-			
-			// ---------------------------------------------------plf 7
 			var iNC = plf_p[ 3 ]; 	// original : NC = P(4)
 			var iN= plf_p[ 4 ];		// original : N = P(5)
 			var iAN = iN + 1;       // for amplitude computing
@@ -751,37 +745,6 @@ function infoStructure( num_struct ) {
 // =============================================================
 //                Data structures
 // =============================================================
-function struct_plf4( ) {
-// =============================================================
-	/*	PLF 4 ----------------- PLF5
-	-	[0]	NOT number, num_notes
-	-	[1]	X = number of harmonics per NOT (i), num_comp
-	-	[2]	time unit, time_un
-	-	[3]	gain level per harmonic, gain_harm
-	-	[4]	length decrement,length_dec
-	-	[5, 6] etc - X x (harmonic number, attack time increment).
-				exs.:	(5, 6) || ( 5, 7)(6, 8)  || (5,8);  (6,9); (7,10)
-				 5  6  7  8  9 10 11 12 13 14 
-				15 16 17 18 19 20 21 22 23 24
-								
-	*/
-	var ar_args = new Array;
-	for(var i=3; i<arguments[ 0 ].length; i++ ) ar_args[ i-3 ] = arguments[ 0 ][ i ];
-	post("plf 4 arguments: <",ar_args,">\n");
-	
-	// this = new Object();
-	this[ 0 ].num_notes = ar_args[ 0 ];
-	this[ 0 ].num_comp = ar_args[ 1 ];
-	this[ 0 ].time_un = ar_args[ 2 ];
-	this[ 0 ].gain_harm = ar_args[ 3 ];
-	this[ 0 ].length_dec = ar_args[ 4 ];
-	this[ 0 ].comp = new Array( this[ 0 ].num_comp );
-	for( var i = 0; i < this[ 0 ].num_comp; i++ ) {
-		this[ 0 ].comp[ i ] = new Object();
-		this[ 0 ].comp[ i ].n =  ar_args[ 4 + 1 + i ];	// harmonic number
-		this[ 0 ].comp[ i ].t =  ar_args[ 4 + 1 + this[ 0 ].num_comp + i ];	// time increments
-	};
-}
 // =============================================================
 function struct_plf5( ) {
 // =============================================================

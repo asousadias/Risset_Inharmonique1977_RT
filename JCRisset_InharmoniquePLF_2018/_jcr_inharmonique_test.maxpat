@@ -9,7 +9,7 @@
 			"modernui" : 1
 		}
 ,
-		"rect" : [ 354.0, 79.0, 1246.0, 880.0 ],
+		"rect" : [ 338.0, 79.0, 1288.0, 861.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -222,12 +222,12 @@
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 0.416318, 0.286347, 0.279531, 1.0 ],
+					"bgcolor" : [ 0.32549, 0.345098, 0.372549, 1.0 ],
 					"bgcolor2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
 					"bgfillcolor_angle" : 270.0,
 					"bgfillcolor_autogradient" : 0.0,
 					"bgfillcolor_color" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-					"bgfillcolor_color1" : [ 0.416318, 0.286347, 0.279531, 1.0 ],
+					"bgfillcolor_color1" : [ 0.32549, 0.345098, 0.372549, 1.0 ],
 					"bgfillcolor_color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
 					"bgfillcolor_proportion" : 0.39,
 					"bgfillcolor_type" : "gradient",
@@ -306,8 +306,18 @@
 			}
 , 			{
 				"box" : 				{
+					"bgcolor" : [ 0.32549, 0.345098, 0.372549, 1.0 ],
+					"bgcolor2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+					"bgfillcolor_angle" : 270.0,
+					"bgfillcolor_autogradient" : 0.0,
+					"bgfillcolor_color" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+					"bgfillcolor_color1" : [ 0.32549, 0.345098, 0.372549, 1.0 ],
+					"bgfillcolor_color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
+					"bgfillcolor_proportion" : 0.39,
+					"bgfillcolor_type" : "gradient",
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
+					"gradient" : 1,
 					"id" : "obj-41",
 					"linecount" : 2,
 					"maxclass" : "message",
@@ -417,12 +427,12 @@
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 0.416318, 0.286347, 0.279531, 1.0 ],
+					"bgcolor" : [ 0.32549, 0.345098, 0.372549, 1.0 ],
 					"bgcolor2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
 					"bgfillcolor_angle" : 270.0,
 					"bgfillcolor_autogradient" : 0.0,
 					"bgfillcolor_color" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
-					"bgfillcolor_color1" : [ 0.416318, 0.286347, 0.279531, 1.0 ],
+					"bgfillcolor_color1" : [ 0.32549, 0.345098, 0.372549, 1.0 ],
 					"bgfillcolor_color2" : [ 0.290196, 0.309804, 0.301961, 1.0 ],
 					"bgfillcolor_proportion" : 0.39,
 					"bgfillcolor_type" : "gradient",
@@ -539,10 +549,10 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 640.0, 687.0, 632.0, 156.0 ],
+					"patching_rect" : [ 640.0, 687.0, 634.0, 156.0 ],
 					"presentation" : 1,
-					"presentation_linecount" : 12,
-					"presentation_rect" : [ 655.0, 308.0, 605.0, 169.0 ],
+					"presentation_linecount" : 11,
+					"presentation_rect" : [ 655.0, 308.0, 628.0, 156.0 ],
 					"style" : "",
 					"text" : "plf 6 0 3 1280, i 1 1 4 400 392, i 1 1.2 4 400 207, i 1 1.4 4 400 446, plf 6 0 5 1360, i 1 1.55 0 600 233, i 1 11 0 200 659, i 1 12.5 0 200 740, i 1 20.5 0 200 466, i 1 35 0 500 440, plf 6 0 4 1400, i 1 8 0 300 233, i 1 12 0 200 440, i 1 21.2 0 100 466, i l 35.02 0 500 881, plf 6 0 1 1250, i 1 14 0 600 370, plf 6 0 1 1320, i 1 19 0 600 587, plf 6 0 2 1210, i 1 24 0 1000 220, i 1 27 0 300 554, plf 6 0 1 1250, i 1 27.3 0 200 800, plf 6 0 2 1320, i 1 35.09 0 800 554, i 1 50 0 1200 587, plf 6 0 1 1550, i 1 42 0 600 659, plf 6 0 1 1600, i 1 43.5 0 600 659.2, plf 6 0 1 1525, i 1 47 0 800 784, plf 6 0 1 1500, i 1 62 0 700 880, plf 6 0 1 1550, i 1 62.4 0 400 700, plf 6 0 1 1650, i 1 66 0 800 1650, plf 6 0 6 1280, i 1 72 6 300 466, i 1 72.15 6 300 329, i 1 72.3 6 300 207, i 1 72.4 8 300 277, i 1 72.5 10 300 147, i 1 72.55 6 300 698, plf 6 0 1 1210, i 1 75 0 400 698, plf 6 0 1 1400, i 1 76.6 0 600 466, plf 6 0 1, i 1 77 0 600 207, plf 6 0 1 1625, i 1 80 13 600 660, plf 6 0 1 1800, i 1 84 0 1200 69, plf 6 0 4 1250, i 1 100 0 300 370, i 1 100.2 0 300 415, i 1 104 0 200 587, i 1 107.5 0 700 493, plf 6 0 1 1400, i 1 100.7 0 200 659, plf 6 0 1 1525, i 1 101.3 0 200 784, plf 6 0 1 1500, i 1 102 0 300 1244, plf 6 0 1 1650, i 1 104.2 0 600 1480, plf 6 0 1 1550, i 1 106 0 600 698, plf 6 0 1 1210, i 1 110 30 900 110"
 				}
