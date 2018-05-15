@@ -4,16 +4,13 @@
 // =============================================================
 //
 //	Jean-Claude Risset, INHARMONIQUE (1977) - 
-//	As described in Lorrain, Denis (1980)
-// 	"Analyse de la bande magnetique de l'oeuvre de Jean-Claude Risset - Inharmonique"
-// 	Rapports IRCAM 26/80.
 //
 //	Max / Javascript patch
 // 
 // 	Resynthesis version by 
 // 		Antonio de Sousa Dias (sousa.dias@wanadoo.fr)
 //		José Luís Ferreira (joseluisferreira@gmail.com)
-
+ 
 /***************************************************************
 This programm implements both PLF routines and Event processing
 in two main parts:
@@ -53,7 +50,6 @@ autowatch = 1;
 // patch variables for coll communication
 var p = this.patcher;
 var js_coll = p.getnamed("coll2js"); // coll object containing structures
-var js_mess = p.getnamed("mess2js"); // assign messages to be sent to the coll object
 
 // subroutines and methods definition
 var plfRoutine = new Array;
@@ -73,6 +69,8 @@ var structure = new Object();
 	// methods for PLF6 struct
 	structure.struct_plf6 = struct_plf6;
 	structure.struct_plf6_comp = struct_plf6_comp;
+	
+var iverbose = 0; // show information
 
 // =============================================================
 //                Functions start here 
@@ -87,12 +85,9 @@ function loadbang(  ) {
 // =============================================================
 function init(  ) {
 // =============================================================
-    // Prepare to load PLF data through the MAX window
-    js_coll.message("refer", "plfSV_data.txt");
-    // dump 'plfSV_data.txt' into this patch through the function 'loadPLFdata'
-    js_mess.message("set", "dump");
-    js_mess.message("bang");
-
+	// load SV1 data into this object through the method
+	// loadPLFdata()
+	js_coll.message("dump");
 }
 
 // The next two functions are equivalent: the csound object
@@ -108,6 +103,12 @@ function e(  ) {
 // =============================================================
 	var ar_args = arrayfromargs( arguments );
 	eventProcess( ar_args );
+}
+
+// =============================================================
+function verbose( i ) {
+// =============================================================
+	iverbose = i;
 }
 
 // =============================================================
@@ -162,9 +163,8 @@ function eventProcess(  ) {
 				
 				case 5:
 					// num_plf, num_events, num_struct
+					if(iverbose != 0) post("case 5 : <",ar_args[ 1 ],"> <", ar_args[ 3 ],"> <", ar_args[ 4 ],">.\n");
 					plfRoutine.newRoutine( ar_args[ 1 ], ar_args[ 3 ], ar_args[ 4 ]);
-					structure[ 0 ] = new Object();
-					structure.struct_plf5( plf_p );
 					break;
 
 					
@@ -264,9 +264,7 @@ function plfProcess( i, icmmand ) {
 			P(7) - "gain par harm."
 			P(8) - "décr. de durée"
 			P( 9 ... 9+(X-1) ) - "X numéros d'armoniques"
-			P( 9+X ... (9+2*X-1) ) - "X incréments de temps d'attaque (par unités de temps)"
-
-			
+			P( 9+X ... (9+2*X-1) ) - "X incréments de temps d'attaque (par unités de temps)"			
 			************************************************/
 
 			/************************************************
@@ -471,7 +469,7 @@ function plfProcess( i, icmmand ) {
 			var iADUR = plf_p[ 8 ]; // original : DUR = P(9)
 			var iAINS = plf_p[ 9 ]; // original : AINS = P(10)
 			
-			post("PLF 6 : NC: ",iNC," IADR: ",iIADR," NN: ",iNN," FREQ: ",iFREQ," AMP: ",iAMP," DUR: ",iDUR," ADUR: ",iADUR," AINS: ",iAINS);
+			if(iverbose != 0) post("PLF 6 : NC: ",iNC," IADR: ",iIADR," NN: ",iNN," FREQ: ",iFREQ," AMP: ",iAMP," DUR: ",iDUR," ADUR: ",iADUR," AINS: ",iAINS);
 
 			if( iFREQ == 0 ) iFREQ =  structure[ iIADR ].freq_sub; // d[ iADR + 2 ]
 			// Ampl reached
@@ -555,7 +553,7 @@ function plfProcess( i, icmmand ) {
 			************************************************/
 			// [used in sections IV, VI & VII
 			// example of call : PLF 0 6 1280 3]
-			post("PLF ",ar_args[ 0 ]," [ ", plfRoutine[ ar_args[ 0 ] ].structure,", ", plfRoutine[ ar_args[ 0 ] ].active,"] in action: ",ar_args[ 1 ],"\n");
+			if(iverbose != 0) post("PLF ",ar_args[ 0 ]," [ ", plfRoutine[ ar_args[ 0 ] ].structure,", ", plfRoutine[ ar_args[ 0 ] ].active,"] in action: ",ar_args[ 1 ],"\n");
 			var struct_num = plfRoutine[ ar_args[ 0 ] ].structure ;
 			var iinstr_num = i_p[ 1 ];
 			var iinstr_str = i_p[ 2 ];
@@ -563,9 +561,9 @@ function plfProcess( i, icmmand ) {
 			var iinstr_amp = i_p[ 4 ];
 			var iinstr_frq = i_p[ 5 ];
 			
-			var num_comp = structure[plfRoutine[ ar_args[ 0 ] ].structure ].num_comp;
+			var num_comp = structure[ plfRoutine[ ar_args[ 0 ] ].structure ].num_comp;
 			// Instrument number destination 
-			var i_num = structure[plfRoutine[ ar_args[ 0 ] ].structure ].i_num;
+			var i_num = structure[ plfRoutine[ ar_args[ 0 ] ].structure ].i_num;
 			var i_dur = 0;
 			var i_amp = 0;
 			var i_freq = 0;
@@ -681,6 +679,7 @@ function plfProcess( i, icmmand ) {
 function loadPLFdata( ) {
 // =============================================================
     // Load SV1 data for use in PLF subroutines through texts loaded into coll data
+	if(iverbose != 0) post("loadPLFdata: <",arguments[ 0 ],">  <",arguments[ 1 ],"> \n");
 	switch( arguments[0] ) {
         case "plf":
             plfLoad = arguments[1];
@@ -725,24 +724,6 @@ function loadPLFdata( ) {
 
 
 // =============================================================
-function infoStructure( num_struct ) {
-// =============================================================
-	post(">>> INFO on Structure <", num_struct ,">\n");
-	for( var i in structure[ num_struct ] ) {
-		if( i != "comp" ) {
-			post(">>> prop <",i,"> = <",structure[ num_struct ][ i ],">\n");
-		} else {
-			for( var j in structure[ num_struct ][ i ] ) {
-				post(">>> prop <",i,">.[",j,"] = <",structure[ num_struct ][ i ][ j ],">\n");
-				for( var k in structure[ num_struct ][ i ][ j ] ) {
-					post(">>> prop <",i,">.[",j,"] = <",k,"> = <",structure[ num_struct ][ i ][ j ][ k ],">\n");
-				}
-			}
-		}
-	};
-}
-
-// =============================================================
 //                Data structures
 // =============================================================
 // =============================================================
@@ -764,12 +745,11 @@ function struct_plf5( ) {
 
      SV1 0 1080 AMP1 AMP2 FRER INS FUND INC1 INC2 INC3 INC4 INC5 - see struct 1080
      PLF Card in Inharmonique
-	 PLF 0 5 8 1080 0 0 0 0 0;
-								
+	 PLF 0 5 8 1080 0 0 0 0 0;	
 	*/
 	var ar_args = new Array;
 	for(var i=0; i<arguments.length; i++ ) ar_args[ i ] = arguments[ i ];
-	post("plf5 arguments: <",ar_args,">\n");
+	if(iverbose != 0) post("plf5 arguments: <",ar_args,">\n");
 	
     //***********************************************************/
     // this = new Object();
@@ -782,7 +762,6 @@ function struct_plf5( ) {
     this[ num_struct ].comp = new Array( 5 );
     for( var j = 0; j<5; j++) {
         this[ num_struct ].comp[ j ] = ar_args[ j + 6 ];
-		// post( " structure ",num_struct," comp ",j," = ",ar_args[ j + 6 ],"\n");
     }
 }
 
@@ -803,7 +782,7 @@ function struct_plf6( num_struct, num_comp, amp_glb, freq_sub, i_num ) {
 	***********************************************************/
 	var ar_args = new Array;
 	for(var i=0; i<arguments.length; i++ ) ar_args[ i ] = arguments[ i ];
-	post("plf6 arguments: <",ar_args,">\n");
+	if(iverbose != 0) post("plf6 arguments: <",ar_args,">\n");
 	// this = new Object();
 	this[ num_struct ].num_comp = num_comp;
 	this[ num_struct ].amp_glb = amp_glb;
@@ -828,4 +807,32 @@ function newRoutine( num_plf, num_events, num_struct ) {
 	this[ num_plf ] = new Object();
 	this[ num_plf ].structure = num_struct;
 	this[ num_plf ].active = num_events;	
+}
+
+// =============================================================
+//                Data structure Information
+// =============================================================
+function infoStructure( num_struct ) {
+// =============================================================
+	post(">>> INFO on Structure <", num_struct ,">\n");
+	for( var i in structure[ num_struct ] ) {
+		if( i != "comp" ) {
+			post(">>> prop <",i,"> = <",structure[ num_struct ][ i ],">\n");
+		} else {
+			for( var j in structure[ num_struct ][ i ] ) {
+				post(">>> prop <",i,">.[",j,"] = <",structure[ num_struct ][ i ][ j ],">\n");
+				for( var k in structure[ num_struct ][ i ][ j ] ) {
+					post(">>> prop <",i,">.[",j,"] = <",k,"> = <",structure[ num_struct ][ i ][ j ][ k ],">\n");
+				}
+			}
+		}
+	};
+}
+// =============================================================
+function infoStructureALL(  ) {
+// =============================================================	
+	for( var i in structure ) {
+		post("============== INFO Structure <", i ,"> ==============\n");
+		infoStructure( i );
+	};
 }
