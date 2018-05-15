@@ -1,10 +1,8 @@
 # Jean-Claude Risset's Inharmonique (1977) for soprano and tape - RealTime version
 Repository for realtime version of Jean-Claude Risset's Inharmonique, 1977, for soprano and tape
 
-Developed by:
-
-__Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt
-
+Developed by:<br>
+__Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
 
@@ -21,8 +19,8 @@ There are four files:
 __NOTE:__ This is a test version, in progress, so use it at your own risk.
 
 ## Acknowledgement
-This work was carried with the support of
-Universidade Católica Portuguesa, Escola das Artes, CITAR
+This work was carried with the support of<br>
+Universidade Católica Portuguesa, Escola das Artes, CITAR<br>
 under the Doctoral program in Conputer Music, dir. Paulo Ferreira Lopes
 
 
@@ -46,13 +44,8 @@ This is a working in progress.
 ## Disclaimer:
 These patches are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Faculdade de Belas-Artes,
-
-Universidade de Lisboa
-
-Largo da Academia Nacional de Belas-Artes
-
-1249-058 Lisboa, Portugal
-
+Faculdade de Belas-Artes, Universidade de Lisboa<br>
+Largo da Academia Nacional de Belas-Artes<br>
+1249-058 Lisboa, Portugal<br><br>
 www.sousadias.com
 
