@@ -41,11 +41,16 @@ This is a working in progress.
 - 2018, May 15 - minor bugs and fixes on test version.
 - 2018, May 1 - release of the test version focusing on PLF routines processing.
 
+
 ## Disclaimer:
 These patches are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Faculdade de Belas-Artes, Universidade de Lisboa<br>
-Largo da Academia Nacional de Belas-Artes<br>
-1249-058 Lisboa, Portugal<br><br>
-www.sousadias.com
 
+
+
+Universidade de Lisboa, Faculdade de Belas-Artes<br>
+Largo da Academia Nacional de Belas-Artes<br>
+1249-058 Lisboa, Portugal<br>
+http://www.belasartes.ulisboa.pt/
+
+www.sousadias.com
