@@ -38,6 +38,7 @@ under the Doctoral program in Conputer Music, dir. Paulo Ferreira Lopes
 
 ## Revision history:
 This is a working in progress.
+- 2019, June 15 - fixes on PLF processing routines.
 - 2018, May 15 - minor bugs and fixes on test version.
 - 2018, May 1 - release of the test version focusing on PLF routines processing.
 
