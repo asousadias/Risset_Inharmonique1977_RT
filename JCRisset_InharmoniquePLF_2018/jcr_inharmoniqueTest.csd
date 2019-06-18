@@ -1,16 +1,19 @@
 <CsoundSynthesizer>
 <CsInstruments>
-; JEAN-CLAUDE RISSET'S INHARMONIQUE (1977)  -  TEST ORCHESTRA & SCORE
+; ===================================================================
+; RISSET'S INHARMONIQUE (1977)
 ; Adapted from
-; Lorrain, Denis
+; Lorrain, Denis (1980)
 ;    "Analyse de la bande magnetique de l'oeuvre de Jean-Claude Risset - Inharmonique"
 ;    in Rapports IRCAM 26/80.
-;
+; different version of SV1 values for PLF6 provided by Jean-Claude Risset
 ; 		Developed by:
-; 		Antonio de Sousa Dias (sousa.dias@wanadoo.fr)
-; 		José Luis Ferreira (1972-2018)
+; 		Antonio de Sousa Dias (a.sousadias@belasartes.ulisboa.pt)
+; 		José Luis Ferreira
 ; 		at
 ; 		Universidade Católica Portuguesa, Porto - Portugal
+; 		2011-19
+; ===================================================================
 
 
 ; TEST ORCHESTRA FOR PLF ROUTINES
@@ -186,7 +189,7 @@ e
   <g>46</g>
   <b>255</b>
  </bgcolor>
- <bsbObject type="BSBVSlider" version="2">
+ <bsbObject version="2" type="BSBVSlider">
   <objectName>slider1</objectName>
   <x>5</x>
   <y>5</y>
