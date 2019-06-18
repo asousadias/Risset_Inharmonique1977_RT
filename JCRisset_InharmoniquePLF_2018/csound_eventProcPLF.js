@@ -8,8 +8,9 @@
 //	Max / Javascript patch
 // 
 // 	Resynthesis version by 
-// 		Antonio de Sousa Dias (sousa.dias@wanadoo.fr)
-//		José Luís Ferreira (joseluisferreira@gmail.com)
+// 		Antonio de Sousa Dias (a.sousadias@belasartes.ulisboa.pt)
+//		José Luís Ferreira 
+// last revision 18.06.2019
  
 /***************************************************************
 This programm implements both PLF routines and Event processing
@@ -310,7 +311,19 @@ function plfProcess( i, icmmand ) {
 				if( iNC < 0  ) break;
 				// 402 CALL READ - NOT card read
 				//     CALL WRITE - NOT card Write
-				outlet(0, "toCsound", "event", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] ); // to REVISE
+				switch( i_p.length ) {
+					case 6:
+						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+						break;
+					case 7:
+						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ], i_p[ 6 ] );
+						break;
+					default:
+						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+						break;
+				}
+				
+				// to REVISE
 				// 	   IF(P(1).NE.1)GO TO 402 // read cards and write them as long they are not NOT cards							
 			};
 			
@@ -332,7 +345,17 @@ function plfProcess( i, icmmand ) {
 				i_p[ 4 ] = i_p[ 4 ] * iD1968;  // original : P(5) = P(5) * D(1968)
 				i_p[ 3 ] = i_p[ 3 ] - iD1969;  // original : P(4) = P(4) - D(1969)
 				// CALL WRITE
-				outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+				switch( i_p.length ) {
+					case 6:
+						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+						break;
+					case 7:
+						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ], i_p[ 6 ] );
+						break;
+					default:
+						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+						break;
+				}
 			};
 			
 			// not needed
@@ -531,7 +554,10 @@ function plfProcess( i, icmmand ) {
 			/*****************************************************
 			VERSION CROSSING RISSET'S PLF FORTRAN PROGRAMMING (JULY 77) AND LORAIN'S REPPORT (1980)
 			
-			// [used in Inharmonique sections IV, VI & VII
+			// [used in Inharmonique sections IV, VI & VII]
+			
+			// Processing of P2 (instrument number according to invoked instrument)
+			// instr 4101 will generate 4103 or 4104, 6101 -> 6103, 6104, etc.
 			
 			Structures defined in array D().
 			Init by SV1 call
@@ -564,6 +590,7 @@ function plfProcess( i, icmmand ) {
 			var num_comp = structure[ plfRoutine[ ar_args[ 0 ] ].structure ].num_comp;
 			// Instrument number destination 
 			var i_num = structure[ plfRoutine[ ar_args[ 0 ] ].structure ].i_num;
+			i_num = i_num + (iinstr_num - 1); // add instrument number 1 calling section
 			var i_dur = 0;
 			var i_amp = 0;
 			var i_freq = 0;
@@ -652,6 +679,7 @@ function plfProcess( i, icmmand ) {
 			
 			iAM = i_p[ 4 ];
 			iF0 = i_p[ 5 ];
+			i_p[ 6 ] = iG80;
 			
 			//		CALL WRITE
 			outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
@@ -662,9 +690,10 @@ function plfProcess( i, icmmand ) {
 				i_p[ 4 ] = iAM * iFCT;
 				i_p[ 3 ] = i_p[ 3 ] - iDD;
 				i_p[ 2 ] = i_p[ 2 ] + iTS;
+				i_p[ 6 ] = iG80;
 				
 				//		CALL WRITE
-				outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+				outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ], i_p[ 6 ] );
 			};
 			break;
 			
