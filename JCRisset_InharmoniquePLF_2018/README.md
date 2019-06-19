@@ -6,10 +6,14 @@ Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
+__NOTE: This is a work in progress.__
+Most of the orchestras and scores are not optimised to keep the __MusicV__ coding style for easier reference.
+- Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/archive/V0.2.0.zip
+
 
 ## Test version - PLF subroutines
-This a first test to debug PLF routines emulation. Reduced scores and orchestra provided just for test purposes, losely based upon original MUSIC V scores.
 This folder containis a test version to process PLF cards in MUSICV.<br>
+It represents a first test to debug PLF routines emulation. Reduced scores and orchestra are provided just for test purposes, losely based upon original MUSIC V scores.
 Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980).
 
 There are four files:
