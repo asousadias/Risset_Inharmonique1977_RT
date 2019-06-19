@@ -5,13 +5,14 @@ Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
-- Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/tree/V0.2.0
+- Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/archive/V0.2.0.zip
+
 
 ## Repository Contents:
-You will find two folders containing __Max__ and __Csound__ patches to process PLF cards in __MUSICV__:<br>
--__JCRisset_InharmoniquePLF_2018__: A first test. Reduced scores and orchestra provided for test purposes. Deprecated.<br>
--__JCRisset_InharmoniquePLF_2019__: A folder containing materials for realtime generation of the listings provided by Lorrain (1980) and Risset.<br><br>
-Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980) and reworked by Sousa Dias upon a FORTRAN listing provided by Risset.<br>
+You will find two folders containing __Max__ and __Csound__ patches to process PLF cards in __MUSICV__:<br><br>
+ -__JCRisset_InharmoniquePLF_2018__: A first test. Reduced scores and orchestra provided for test purposes. Deprecated.<br>
+ -__JCRisset_InharmoniquePLF_2019__: A folder containing materials for realtime generation of the listings provided by Lorrain (1980) and Risset.<br><br>
+Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980) and reworked by Sousa Dias upon a FORTRAN listing provided by Risset.<br><br>
 __NOTE:__ Most of the orchestras and scores are not optimised to keep the __MusicV__ coding style for easier reference. <br>
 This is a test version, in progress, so use it at your own risk.
 

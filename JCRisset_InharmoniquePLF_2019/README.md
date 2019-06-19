@@ -15,8 +15,6 @@ This folder containis a test version to process PLF cards in MUSICV.<br>
 Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980).
 
 There are four files:
-4. __plfSV_data.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969)
-
 1. __\_jcr_inharmonique_RT_v0.1.maxpat__- This is the main maxpatch. You'll neeed the __csound~__ external object
 2. __csound_eventProcPLF.js__ - The javascript programm processing notes and plf commands.
 3. __jcr_inharmoniqueRT.csd__ - A csound file to play the events
