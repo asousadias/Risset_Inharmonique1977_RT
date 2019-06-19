@@ -9,14 +9,12 @@ __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Mú
 - Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/archive/V0.2.0.zip
 
 ## Test version - PLF subroutines
-You will find, for the moment, a folder containing a test version to process PLF cards in MUSICV.<br>
+This folder contains a test version to process PLF cards in MUSICV.<br>
 Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1985).
 
 There are four files:
-4. __plfSV_data.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969)
-
-1. __\_jcr_inharmonique_RT_v0.1.maxpat__- This is the main maxpatch. You'll neeed the __csound~__ external object
-2. __csound_eventProcPLF.js__ - The javascript programm processing notes and plf commands.
+1. __\_jcr_inharmonique_RT_v0.1.maxpat__- The main maxpatch. You'll neeed the __csound~__ external object
+2. __csound_eventProcPLF.js__ - The javascript programm processing _notes_ and _plf_ commands.
 3. __jcr_inharmoniqueRT.csd__ - A csound file to play the events
 4. __plfSV_data1.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969)
 5. __plfSV_data2.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969). Version provided by Risset
@@ -47,7 +45,6 @@ under the Doctoral program in Conputer Music, dir. Paulo Ferreira Lopes
 
 
 ## Revision history:
-This is a working in progress.
 - 2019, June 15 - First 2019 realtime version. Several improvements on PLF processing routines. Redesign of csound file and Max interface. From 2018 version.
 - 2019, June 15 - version 2018: fixes on  PLF processing routines.
 - 2018, May 15 - version 2018: minor bugs and fixes on test version.
@@ -55,9 +52,7 @@ This is a working in progress.
 
 
 ## Disclaimer:
-These patches are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-
+These patches are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>
 
 
 Universidade de Lisboa, Faculdade de Belas-Artes<br>
