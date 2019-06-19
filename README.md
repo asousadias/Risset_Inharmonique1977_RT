@@ -5,12 +5,15 @@ Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
-## Contents:
-You will find two folders containing Max and Csound patches to process PLF cards in MUSICV:<br>
--_JCRisset_InharmoniquePLF_2018_: A first test. Reduced scores and orchestra provided for test purposes. Deprecated.<br>
--_JCRisset_InharmoniquePLF_2019_: A folder containing materials for realtime generation of the listings provided by Lorrain (1980) and Risset.<br><br>
+- Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/tree/V0.2.0
+
+## Repository Contents:
+You will find two folders containing __Max__ and __Csound__ patches to process PLF cards in __MUSICV__:<br>
+-__JCRisset_InharmoniquePLF_2018__: A first test. Reduced scores and orchestra provided for test purposes. Deprecated.<br>
+-__JCRisset_InharmoniquePLF_2019__: A folder containing materials for realtime generation of the listings provided by Lorrain (1980) and Risset.<br><br>
 Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980) and reworked by Sousa Dias upon a FORTRAN listing provided by Risset.<br>
-__NOTE:__ This is a test version, in progress, so use it at your own risk.
+__NOTE:__ Most of the orchestras and scores are not optimised to keep the __MusicV__ coding style for easier reference. <br>
+This is a test version, in progress, so use it at your own risk.
 
 ## Acknowledgement
 This work was carried with the support of<br>
@@ -37,10 +40,7 @@ This is a working in progress.
 - 2018, May 1 - version 2018: release of the test version focusing on PLF routines processing.
 
 ## Disclaimer:
-These patches are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-
-
+These patches are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>
 
 Universidade de Lisboa, Faculdade de Belas-Artes<br>
 Largo da Academia Nacional de Belas-Artes<br>

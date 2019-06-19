@@ -18,7 +18,8 @@ There are four files:
 3. __jcr_inharmoniqueTest.csd__ - A csound file to play the events
 4. __plfSV_data.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969)
 
-__NOTE:__ This is a test version, in progress, so use it at your own risk.
+__NOTE:__ Most of the orchestras and scores are not optimised to keep the __MusicV__ coding style for easier reference. <br>
+This is a test version, in progress, so use it at your own risk.
 
 ## Acknowledgement
 This work was carried with the support of<br>

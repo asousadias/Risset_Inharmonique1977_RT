@@ -6,6 +6,7 @@ Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
+- Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/tree/V0.2.0
 
 ## Test version - PLF subroutines
 You will find, for the moment, a folder containing a test version to process PLF cards in MUSICV.<br>
@@ -24,7 +25,8 @@ There are four files:
 8. __README.md__ - This read me file
 9. __soundin.88__ - File with bell shaped curve for use in LOSLO3 see Risset, (\[1969\] 1995)
 
-__NOTE:__ This is a test version, in progress, so use it at your own risk.
+__NOTE:__ Most of the orchestras and scores are not optimised to keep the __MusicV__ coding style for easier reference. <br>
+This is a test version, in progress, so use it at your own risk.
 
 ## Acknowledgement
 This work was carried with the support of<br>
