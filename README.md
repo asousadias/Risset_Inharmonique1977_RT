@@ -5,14 +5,11 @@ Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
-## Test version - PLF subroutines
-You will find, for the moment, a folder containing a test version to process PLF cards in MUSICV.<br>
-Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980) and reworked by Sousa Dias upon a FORTRAN listing provided by Risset.<br>
-
-There are two folders:
+## Contents:
+You will find two folders containing Max and Csound patches to process PLF cards in MUSICV:<br>
 -_JCRisset_InharmoniquePLF_2018_: A first test. Reduced scores and orchestra provided for test purposes. Deprecated.
 -_JCRisset_InharmoniquePLF_2019_: A folder containing materials for realtime generation of the listings provided by Lorrain (1980) and Risset.
-
+Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980) and reworked by Sousa Dias upon a FORTRAN listing provided by Risset.<br>
 __NOTE:__ This is a test version, in progress, so use it at your own risk.
 
 ## Acknowledgement
