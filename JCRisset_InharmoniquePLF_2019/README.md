@@ -10,7 +10,8 @@ __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Mú
 
 ## Test version - PLF subroutines
 This folder contains a test version to process PLF cards in MUSICV.<br>
-Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1985).
+Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1985).<br>
+It contains all the files mentioned in Lorrain referred by the corresponding section names.<br>
 
 There are four files:
 1. __\_jcr_inharmonique_RT_v0.1.maxpat__- The main maxpatch. You'll neeed the __csound~__ external object
