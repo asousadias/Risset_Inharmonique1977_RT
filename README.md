@@ -43,8 +43,6 @@ under the Doctoral program in Conputer Music, dir. Paulo Ferreira Lopes
 These patches are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 
-
-
 Universidade de Lisboa, Faculdade de Belas-Artes<br>
 Largo da Academia Nacional de Belas-Artes<br>
 1249-058 Lisboa, Portugal<br>
