@@ -6,6 +6,8 @@ Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
+- Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/archive/V0.2.0.zip
+
 
 ## Test version - PLF subroutines
 This a first test to debug PLF routines emulation. Reduced scores and orchestra provided just for test purposes, losely based upon original MUSIC V scores.

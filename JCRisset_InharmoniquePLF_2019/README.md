@@ -6,11 +6,13 @@ Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
-- Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/tree/V0.2.0
+- Current release: https://github.com/asousadias/Risset_Inharmonique1977_RT/archive/V0.2.0.zip
+
 
 ## Test version - PLF subroutines
-You will find, for the moment, a folder containing a test version to process PLF cards in MUSICV.<br>
-Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1985).
+This folder provides an adaptation of Risset's _Inharmonique_ patches to play in real time in Max. It is based upon Lorrain (1980),  based upon original MUSIC V scores.
+This folder containis a test version to process PLF cards in MUSICV.<br>
+Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980).
 
 There are four files:
 4. __plfSV_data.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969)
@@ -63,6 +65,6 @@ These patches are distributed in the hope that they will be useful, but WITHOUT 
 Universidade de Lisboa, Faculdade de Belas-Artes<br>
 Largo da Academia Nacional de Belas-Artes<br>
 1249-058 Lisboa, Portugal<br>
-http://www.belasartes.ulisboa.pt/
+http://www.belasartes.ulisboa.pt/                                                                                       
 
 www.sousadias.com
