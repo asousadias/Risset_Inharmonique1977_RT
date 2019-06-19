@@ -1,17 +1,28 @@
 # Jean-Claude Risset's Inharmonique (1977) for soprano and tape - RealTime version
+# JCRisset_InharmoniquePLF_2019
 Repository for realtime version of Jean-Claude Risset's Inharmonique, 1977, for soprano and tape
 
 Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
+
 ## Test version - PLF subroutines
 You will find, for the moment, a folder containing a test version to process PLF cards in MUSICV.<br>
-Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980) and reworked by Sousa Dias upon a FORTRAN listing provided by Risset.<br>
+Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1985).
 
-There are two folders:
--_JCRisset_InharmoniquePLF_2018_: A first test. Reduced scores and orchestra provided for test purposes. Deprecated.
--_JCRisset_InharmoniquePLF_2019_: A folder containing materials for realtime generation of the listings provided by Lorrain (1980) and Risset.
+There are four files:
+4. __plfSV_data.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969)
+
+1. __\_jcr_inharmonique_RT_v0.1.maxpat__- This is the main maxpatch. You'll neeed the __csound~__ external object
+2. __csound_eventProcPLF.js__ - The javascript programm processing notes and plf commands.
+3. __jcr_inharmoniqueRT.csd__ - A csound file to play the events
+4. __plfSV_data1.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969)
+5. __plfSV_data2.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969). Version provided by Risset
+6. __r8_ir_msbTEST44k.wav__ - Sound file to test delay lines for soprano melody (clarinte type sound for test purposes only) SR = 44.1kHz
+7. __r8_ir_msbTEST48k.wav__ - Same as previous but with SR = 48kHz
+8. __README.md__ - This read me file
+9. __soundin.88__ - File with bell shaped curve for use in LOSLO3 see Risset, (\[1969\] 1995)
 
 __NOTE:__ This is a test version, in progress, so use it at your own risk.
 
@@ -35,9 +46,11 @@ under the Doctoral program in Conputer Music, dir. Paulo Ferreira Lopes
 
 ## Revision history:
 This is a working in progress.
-- 2019, June 15 - release of 2019 realtime version. Several improvements on PLF processing routines. version 2018: fixes on PLF processing routines.
+- 2019, June 15 - First 2019 realtime version. Several improvements on PLF processing routines. Redesign of csound file and Max interface. From 2018 version.
+- 2019, June 15 - version 2018: fixes on  PLF processing routines.
 - 2018, May 15 - version 2018: minor bugs and fixes on test version.
 - 2018, May 1 - version 2018: release of the test version focusing on PLF routines processing.
+
 
 ## Disclaimer:
 These patches are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

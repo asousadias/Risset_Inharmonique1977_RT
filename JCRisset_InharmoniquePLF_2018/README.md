@@ -1,17 +1,22 @@
 # Jean-Claude Risset's Inharmonique (1977) for soprano and tape - RealTime version
-Repository for realtime version of Jean-Claude Risset's Inharmonique, 1977, for soprano and tape
+# JCRisset_InharmoniquePLF_2018
+Test version to process PLF cards in MUSICV for realtime version of Jean-Claude Risset's Inharmonique, 1977, for soprano and tape
 
 Developed by:<br>
 __Antonio de Sousa Dias__ Universidade de Lisboa, Faculdade de Belas-Artes a.sousadias@belasartes.ulisboa.pt<br>
 __José Luis Ferreira__ Instituto Politécnico de Lisboa, Escola Superior de Música de Lisboa
 
-## Test version - PLF subroutines
-You will find, for the moment, a folder containing a test version to process PLF cards in MUSICV.<br>
-Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980) and reworked by Sousa Dias upon a FORTRAN listing provided by Risset.<br>
 
-There are two folders:
--_JCRisset_InharmoniquePLF_2018_: A first test. Reduced scores and orchestra provided for test purposes. Deprecated.
--_JCRisset_InharmoniquePLF_2019_: A folder containing materials for realtime generation of the listings provided by Lorrain (1980) and Risset.
+## Test version - PLF subroutines
+This a first test to debug PLF routines emulation. Reduced scores and orchestra provided just for test purposes, losely based upon original MUSIC V scores.
+This folder containis a test version to process PLF cards in MUSICV.<br>
+Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980).
+
+There are four files:
+1. __\_jcr_inharmonique_test.maxpat__ - This is the main maxpatch. You'll neeed the __csound~__ external object
+2. __csound_eventProcPLF.js__ - The javascript programm processing notes and plf commands.
+3. __jcr_inharmoniqueTest.csd__ - A csound file to play the events
+4. __plfSV_data.txt__ - Data for PLF 5 and 6 (SV1 variables, see Lorrain 1980 and Mathews 1969)
 
 __NOTE:__ This is a test version, in progress, so use it at your own risk.
 
