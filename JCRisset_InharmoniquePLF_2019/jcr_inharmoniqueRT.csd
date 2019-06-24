@@ -58,11 +58,11 @@ iP7	= p6
 iV1	= 1
 
 ifn1 = 1001
-ifn5 = 1005
+ifn6 = 1006
 ifn7 = 1007
 ifn8 = 1008
 
-aB5	oscili  iV1, iDUR, ifn5
+aB5	oscili  iV1, iDUR, ifn6
 aB4	oscili	100, iDUR, ifn7
 aB4	randh	iV1, aB4
 aB3	=	aB5 * iP5
