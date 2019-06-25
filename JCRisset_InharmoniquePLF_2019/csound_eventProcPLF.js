@@ -344,16 +344,39 @@ function plfProcess( i, icmmand ) {
 				i_p[ 2 ] = iD1967 * iD[iJJJ] + i_p[ 2 ];  // original : P(2) = D(1967) * D(iJJJ) + P(2)
 				i_p[ 4 ] = i_p[ 4 ] * iD1968;  // original : P(5) = P(5) * D(1968)
 				i_p[ 3 ] = i_p[ 3 ] - iD1969;  // original : P(4) = P(4) - D(1969)
-				// CALL WRITE
+				// CALL WRITE				
+				/****************************************
+				Added code:
+				You can enter more "i" parameters: they will be added to the generated "i" command.
+				*****************************************/
+				if (i_p.length > 6) {
+					pNOT = new Array( i_p.length - 6);
+					for( var i = 0; i < pNOT.length; i++ ) pNOT[ i ] = i_p[ i + 6 ];
+					
+				// Here you can modify each of the added pNOT parameters.
+				// pNOT[0], pNOT[1], pNOT[2], ...
+					if (pNOT.length > 1) pNOT[1] = pNOT[1]+j; // An example
+					
+					}
+				/****************************************
+				End of Added Code
+				*****************************************/
 				switch( i_p.length ) {
-					case 6:
-						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+						post( "PLF4 warning: to few parameters: ",i_p.length," in but 6 expected.\n" );
 						break;
-					case 7:
-						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ], i_p[ 6 ] );
+					case 6:
+						/************************** "Original" Output ****************************************/
+						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
 						break;
 					default:
-						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+						/************************** Added parameters Output****************************************/
+						outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ], pNOT );
 						break;
 				}
 			};
@@ -600,6 +623,25 @@ function plfProcess( i, icmmand ) {
 			var i_ampRatio = iinstr_amp / structure[ struct_num ].amp_glb;
 			var i_durRatio = iinstr_dur / structure[ struct_num ].comp[ 0 ].dur;
 			
+			
+			/****************************************
+			Added code:
+			You can enter more "i" parameters: they will be added to the generated "i" command.
+			*****************************************/
+			var iNOTlength = i_p.length - 6;				
+			if (i_p.length > 6) {
+				// The pNOT array will hold the extra parameters
+				pNOT = new Array( i_p.length - 6);
+				for( var i = 0; i < pNOT.length; i++ ) {
+					pNOT[ i ] = i_p[ i + 6 ];
+				}
+			// Here you can modify each of the added pNOT parameters.
+			// pNOT[0], pNOT[1], pNOT[2], ...					
+			}
+			/****************************************
+			End of Added Code
+			*****************************************/
+						
 			for( var i = 0; i < num_comp; i++) {
 				// 
 				if( iinstr_dur == 0 ) {
@@ -612,7 +654,36 @@ function plfProcess( i, icmmand ) {
 				// Frequency ratio
 				i_freq = structure[ struct_num ].comp[ i ].freq * i_freqRatio;
 								
-				outlet(0, "toCsound", "event", "i", i_num, iinstr_str, i_dur, i_amp, i_freq );	
+				/****************************************
+				Added code:
+				You can enter modify the extra "i" parameters: they will be added to the generated "i" command.
+				*****************************************/				
+				// Here you can modify each of the added pNOT parameters.
+				// pNOT[0], pNOT[1], pNOT[2], ...
+				// Example: ADD 'i' component to p7 (second extra parameter:
+				if (pNOT.length > 1) pNOT[ 1 ] = pNOT[ 1 ] + i; // this is just an example
+				if (pNOT.length > 2) pNOT[ 2 ] = i; // another example: this overrides original parameter value
+				/****************************************
+				End of Added Code
+				*****************************************/
+			
+				switch( i_p.length ) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+						post( "PLF6 warning: to few parameters: ",i_p.length," in, but 6 expected.\n" );
+						break;
+					case 6:
+						outlet(0, "toCsound", "event", "i", i_num, iinstr_str, i_dur, i_amp, i_freq );
+						break;
+					default:
+						outlet(0, "toCsound", "event", "i", i_num, iinstr_str, i_dur, i_amp, i_freq, pNOT );
+						break;
+				}
+	
 			};
 			
 			break;
