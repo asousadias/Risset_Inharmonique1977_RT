@@ -657,12 +657,14 @@ function plfProcess( i, icmmand ) {
 				/****************************************
 				Added code:
 				You can enter modify the extra "i" parameters: they will be added to the generated "i" command.
-				*****************************************/				
-				// Here you can modify each of the added pNOT parameters.
-				// pNOT[0], pNOT[1], pNOT[2], ...
-				// Example: ADD 'i' component to p7 (second extra parameter:
-				if (pNOT.length > 1) pNOT[ 1 ] = pNOT[ 1 ] + i; // this is just an example
-				if (pNOT.length > 2) pNOT[ 2 ] = i; // another example: this overrides original parameter value
+				*****************************************/
+				if (i_p.length > 6) {			
+					// Here you can modify each of the added pNOT parameters.
+					// pNOT[0], pNOT[1], pNOT[2], ...
+					// Example: ADD 'i' component to p7 (second extra parameter:
+					if (pNOT.length > 1) pNOT[ 1 ] = pNOT[ 1 ] + i; // this is just an example
+					if (pNOT.length > 2) pNOT[ 2 ] = i; // another example: this overrides original parameter value
+				}
 				/****************************************
 				End of Added Code
 				*****************************************/
