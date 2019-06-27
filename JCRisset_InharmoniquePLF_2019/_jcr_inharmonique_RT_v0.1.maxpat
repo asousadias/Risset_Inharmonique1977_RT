@@ -5488,7 +5488,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 356.0, 301.0, 525.0, 102.0 ],
-									"text" : "i9250 0 8, i9246 8 8, plf 4 0 1 10 0.1 1 0 4 2 3 5 8 7 6 10 9 11 0 2 2 4 3.5 4 1 3.5 3 4, i 2205 0 0.8 300 329, plf 4 0 2 10 0.1 1 0 2 4 3 5 6 8 7 9 10 11 0 0 2 3 2 4 3 4 4 2 3, i 2205 0 0.7 400 277, i 2205 0 0.7 300 174, plf 4 0 1 10 0.1 1 0 4 2 3 5 8 7 6 9 8 10 0 2 2 4 3.5 4 1 3.5 4 3, i 2205 0 0.6 300 123,, plf 4 0 2 11 0.1 1 0.04 10 8 9 10 6 7 11 13 12 14 10 1 2 5 3 7 3 2 3 5 8 9, i 2206 8 0.5 300 329, i 2206 8 0.5 300 261, plf 4 0 2 11 0.1 1 0.04 10 8 9 10 6 7 11 13 12 14 10 3 2 4 3 6 4 3 4 7 9 10, i 2205 8 0.5 300 277, i 2205 8 0.5 300 174, plf 4 0 1 11 0.1 1 0.04 8 10 10 9 7 6 13 11 14 12 10 4 2 5 3 7 3 2 4 5 7 10, i 2206 8 0.5 300 123"
+									"text" : "i9250 0 8, i9246 8 8, plf 4 0 1 10 0.1 1 0 4 2 3 5 8 7 6 10 9 11 0 2 2 4 3.5 4 1 3.5 3 4, i 2205 0 0.8 300 329, plf 4 0 2 10 0.1 1 0 2 4 3 5 6 8 7 9 10 11 0 2 3 2 4 3 4 4 2 3, i 2205 0 0.7 400 277, i 2205 0 0.7 300 174, plf 4 0 1 10 0.1 1 0 4 2 3 5 8 7 6 9 8 10 0 2 2 4 3.5 4 1 3.5 4 3, i 2205 0 0.6 300 123,, plf 4 0 2 11 0.1 1 0.04 10 8 9 10 6 7 11 13 12 14 10 1 2 5 3 7 3 2 3 5 8 9, i 2206 8 0.5 300 329, i 2206 8 0.5 300 261, plf 4 0 2 11 0.1 1 0.04 10 8 9 10 6 7 11 13 12 14 10 3 2 4 3 6 4 3 4 7 9 10, i 2205 8 0.5 300 277, i 2205 8 0.5 300 174, plf 4 0 1 11 0.1 1 0.04 8 10 10 9 7 6 13 11 14 12 10 4 2 5 3 7 3 2 4 5 7 10, i 2206 8 0.5 300 123"
 								}
 
 							}
@@ -5750,7 +5750,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 314.0, 588.0, 555.0 ],
+						"rect" : [ 944.0, 459.0, 588.0, 555.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -6850,12 +6850,12 @@
 									"patching_rect" : [ 22.0, 367.0, 136.0, 47.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmax" : 6.0,
 											"parameter_shortname" : "live.gain~",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
 											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~[1]"
+											"parameter_longname" : "live.gain~[1]",
+											"parameter_mmax" : 6.0
 										}
 
 									}
@@ -7131,12 +7131,12 @@
 									"patching_rect" : [ 198.0, 367.0, 136.0, 47.0 ],
 									"saved_attribute_attributes" : 									{
 										"valueof" : 										{
-											"parameter_mmax" : 6.0,
 											"parameter_shortname" : "live.gain~",
 											"parameter_type" : 0,
 											"parameter_unitstyle" : 4,
 											"parameter_mmin" : -70.0,
-											"parameter_longname" : "live.gain~"
+											"parameter_longname" : "live.gain~",
+											"parameter_mmax" : 6.0
 										}
 
 									}
@@ -9638,8 +9638,8 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-13::obj-41" : [ "live.gain~", "live.gain~", 0 ],
 			"obj-13::obj-52" : [ "live.gain~[1]", "live.gain~", 0 ],
+			"obj-13::obj-41" : [ "live.gain~", "live.gain~", 0 ],
 			"parameterbanks" : 			{
 
 			}
