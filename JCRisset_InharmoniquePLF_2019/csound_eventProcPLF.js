@@ -10,7 +10,7 @@
 // 	Resynthesis version by 
 // 		Antonio de Sousa Dias (a.sousadias@belasartes.ulisboa.pt)
 //		José Luís Ferreira 
-// last revision 18.06.2019
+// last revision 24.06.2019
  
 /***************************************************************
 This programm implements both PLF routines and Event processing
@@ -476,103 +476,7 @@ function plfProcess( i, icmmand ) {
 			};
 						
 			break;
-		case 66:
-			/************************************************
-			[Original comments:]
-			PLF 6 for inharmonic separate components
-			
-			Define inharmonic sounds to be transposed by PLF as follow in D array
-			Number of notes, total ampl reached, pitch geard, ins no, 
-			Then for each note freq, dur, intensity
-			specify in dummy inst notes the wanted AT, DUR, INT, PITCH
-			if note duration zero the programm will assume durations given
-			in data but multiplied by inverse frequency ratio
-			e.g. if bell one octave higher, durations two times shorter
-			call as follows:
-			PLF 0 6 NC ADRESS FREQ AMPL DUR DURINC INSTNO
-			with:
-			NC		number of following note cards on dummy instruments each defining a transp
-			ADRESS	adress in D array of begining of inharmonic sound specification
-			FREQ	desired heard pitch in Hz  -- P(5)
-			DUR		desired maximal duration    -- P(3)
-			DURINC	additive incr for all durations
-			INSTRNO	instrument number
-			Analogous to PLF5 but different
-
-			Note: different from Lorrain's PLF 6 Inharmonique description
-			
-			************************************************/
-						
-			var iC = 0; // NOT NEEDED
-			// Data from PLF6 card
-			var iNC = plf_p[ 3 ]; // original : NC = P(4)  // NOT NEEDED HERE
-			var iIADR = plf_p[ 4 ]; // original : IADR = P(5)
-			var iNN = structure[ iIADR ].num_comp; // D[ iIADR ] - 1
-
-			var iFREQ = plf_p[ 5 ]; // original : FREQ = P(6)
-			var iAMP = plf_p[ 6 ]; // original : AMP = P(7)
-			var iDUR = plf_p[ 7 ]; // original : IADR = P(8)
-			var iADUR = plf_p[ 8 ]; // original : DUR = P(9)
-			var iAINS = plf_p[ 9 ]; // original : AINS = P(10)
-			
-			if(iverbose != 0) post("PLF 6 : NC: ",iNC," IADR: ",iIADR," NN: ",iNN," FREQ: ",iFREQ," AMP: ",iAMP," DUR: ",iDUR," ADUR: ",iADUR," AINS: ",iAINS);
-
-			if( iFREQ == 0 ) iFREQ =  structure[ iIADR ].freq_sub; // d[ iADR + 2 ]
-			// Ampl reached
-			if( iAMP == 0 ) iAMP =  structure[ iIADR ].freq_sub; // d[ iADR + 1 ]
-			// Durat mult factor
-			if( iDUR == 0 ) iDUR =  structure[ iIADR ].comp[ 0 ].dur; // d[ iADR + 5 ]
-			// Instrument number destination
-			if( iAINS == 0 ) iAINS =  i_p[ 1 ]; // d[ iADR + 3 ]
-			
-			// CALL READ // read next NOT card - store P-values in i_p[]
-			var iAM = i_p[ 4 ] / iAMP;
-			
-			// Ampl factor = ampl desired / ampl reached
-			i_p[ 4 ] = structure[ iIADR ].comp[ 0 ].amp * iAM;
-			
-			// Frequency factor desired/reached
-			var iinstr_frq = i_p[ 5 ];
-			var iFRE =  i_p[ 5 ] / iFREQ;
-			i_p[ 5 ] = iFRE * structure[ iIADR ].comp[ 0 ].freq; // D( iADR + 4 )
-			
-			i_p[ 1 ] = iAINS; // orig P(3)
-			var iDDD = i_p[ 3 ];
-			if( iDDD <= 0 ) {
-				// if P3 Zero mpy durations by inverse freq ratio
-				i_p[ 3 ] = iDUR / iFRE;
-			} else {
-				// if P3 Non-Zero factor DU desired/reached
-				iDU = i_p[ 3 ] / iDUR;
-				i_p[ 3 ] = iDUR / iFRE;
-			};
-			
-			iPFNBR = 6;
-			// CALL WRITE
-			// writes the first card - structure(x).comp( 0 ) <---
-			outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ]);
-			
-			
-			for( var iII = 1; iII < iNN; iII++ ) { // MAYBE "<=" SHOULD BE "<"
-				var iNNN = iIADR + 7 + 3 * (iII - 1); // comp iII-1 . freq
-				
-				if( iDDD <= 0 ) {
-					// if P3 of note is Zero
-					i_p[ 3 ] =  structure[ iIADR ].comp[ iII ].dur / iFRE + iADUR;
-				} else {
-					// otherwise					
-					i_p[ 3 ] =  iDU * structure[ iIADR ].comp[ iII ].dur + iADUR;
-				};
-				i_p[ 4 ] =  iAM * structure[ iIADR ].comp[ iII ].amp;
-				i_p[ 5 ] =  iFRE * structure[ iIADR ].comp[ iII ].freq;
-				
-								
-				iPFNBR = 6;
-				// CALL WRITE
-				outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
-			};
-			
-			break;
+		
 		case 6:
 			/*****************************************************
 			VERSION CROSSING RISSET'S PLF FORTRAN PROGRAMMING (JULY 77) AND LORAIN'S REPPORT (1980)
@@ -689,7 +593,103 @@ function plfProcess( i, icmmand ) {
 			};
 			
 			break;
+		case 66:
+			/************************************************
+			[Original comments:]
+			PLF 6 for inharmonic separate components
 			
+			Define inharmonic sounds to be transposed by PLF as follow in D array
+			Number of notes, total ampl reached, pitch geard, ins no, 
+			Then for each note freq, dur, intensity
+			specify in dummy inst notes the wanted AT, DUR, INT, PITCH
+			if note duration zero the programm will assume durations given
+			in data but multiplied by inverse frequency ratio
+			e.g. if bell one octave higher, durations two times shorter
+			call as follows:
+			PLF 0 6 NC ADRESS FREQ AMPL DUR DURINC INSTNO
+			with:
+			NC		number of following note cards on dummy instruments each defining a transp
+			ADRESS	adress in D array of begining of inharmonic sound specification
+			FREQ	desired heard pitch in Hz  -- P(5)
+			DUR		desired maximal duration    -- P(3)
+			DURINC	additive incr for all durations
+			INSTRNO	instrument number
+			Analogous to PLF5 but different
+
+			Note: different from Lorrain's PLF 6 Inharmonique description. Not tottally funcional: In progress.
+			
+			************************************************/
+						
+			var iC = 0; // NOT NEEDED
+			// Data from PLF6 card
+			var iNC = plf_p[ 3 ]; // original : NC = P(4)  // NOT NEEDED HERE
+			var iIADR = plf_p[ 4 ]; // original : IADR = P(5)
+			var iNN = structure[ iIADR ].num_comp; // D[ iIADR ] - 1
+
+			var iFREQ = plf_p[ 5 ]; // original : FREQ = P(6)
+			var iAMP = plf_p[ 6 ]; // original : AMP = P(7)
+			var iDUR = plf_p[ 7 ]; // original : IADR = P(8)
+			var iADUR = plf_p[ 8 ]; // original : DUR = P(9)
+			var iAINS = plf_p[ 9 ]; // original : AINS = P(10)
+			
+			if(iverbose != 0) post("PLF 6 : NC: ",iNC," IADR: ",iIADR," NN: ",iNN," FREQ: ",iFREQ," AMP: ",iAMP," DUR: ",iDUR," ADUR: ",iADUR," AINS: ",iAINS);
+
+			if( iFREQ == 0 ) iFREQ =  structure[ iIADR ].freq_sub; // d[ iADR + 2 ]
+			// Ampl reached
+			if( iAMP == 0 ) iAMP =  structure[ iIADR ].freq_sub; // d[ iADR + 1 ]
+			// Durat mult factor
+			if( iDUR == 0 ) iDUR =  structure[ iIADR ].comp[ 0 ].dur; // d[ iADR + 5 ]
+			// Instrument number destination
+			if( iAINS == 0 ) iAINS =  i_p[ 1 ]; // d[ iADR + 3 ]
+			
+			// CALL READ // read next NOT card - store P-values in i_p[]
+			var iAM = i_p[ 4 ] / iAMP;
+			
+			// Ampl factor = ampl desired / ampl reached
+			i_p[ 4 ] = structure[ iIADR ].comp[ 0 ].amp * iAM;
+			
+			// Frequency factor desired/reached
+			var iinstr_frq = i_p[ 5 ];
+			var iFRE =  i_p[ 5 ] / iFREQ;
+			i_p[ 5 ] = iFRE * structure[ iIADR ].comp[ 0 ].freq; // D( iADR + 4 )
+			
+			i_p[ 1 ] = iAINS; // orig P(3)
+			var iDDD = i_p[ 3 ];
+			if( iDDD <= 0 ) {
+				// if P3 Zero mpy durations by inverse freq ratio
+				i_p[ 3 ] = iDUR / iFRE;
+			} else {
+				// if P3 Non-Zero factor DU desired/reached
+				iDU = i_p[ 3 ] / iDUR;
+				i_p[ 3 ] = iDUR / iFRE;
+			};
+			
+			iPFNBR = 6;
+			// CALL WRITE
+			// writes the first card - structure(x).comp( 0 ) <---
+			outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ]);
+			
+			
+			for( var iII = 1; iII < iNN; iII++ ) { // MAYBE "<=" SHOULD BE "<"
+				var iNNN = iIADR + 7 + 3 * (iII - 1); // comp iII-1 . freq
+				
+				if( iDDD <= 0 ) {
+					// if P3 of note is Zero
+					i_p[ 3 ] =  structure[ iIADR ].comp[ iII ].dur / iFRE + iADUR;
+				} else {
+					// otherwise					
+					i_p[ 3 ] =  iDU * structure[ iIADR ].comp[ iII ].dur + iADUR;
+				};
+				i_p[ 4 ] =  iAM * structure[ iIADR ].comp[ iII ].amp;
+				i_p[ 5 ] =  iFRE * structure[ iIADR ].comp[ iII ].freq;
+				
+								
+				iPFNBR = 6;
+				// CALL WRITE
+				outlet(0, "toCsound", "event", "i", i_p[ 1 ], i_p[ 2 ], i_p[ 3 ], i_p[ 4 ], i_p[ 5 ] );
+			};
+			
+			break;	
 		case 7:
 			/************************************************
 			// Lorrain 1980: p6 Inharmonique(LBll13(1))
