@@ -14,7 +14,7 @@ This folder provides an adaptation of Risset's _Inharmonique_ patches to play in
 This folder containis a test version to process PLF cards in MUSICV.<br>
 Supported PLF subroutines: PLF4, PLF5, PLF6 and PLF7 as mentioned in Lorrain (1980).
 
-There are four files:
+There are the following files:
 1. __\_jcr_inharmonique_RT_v0.1.maxpat__- This is the main maxpatch. You'll neeed the __csound~__ external object
 2. __csound_eventProcPLF.js__ - The javascript programm processing notes and plf commands.
 3. __jcr_inharmoniqueRT.csd__ - A csound file to play the events
