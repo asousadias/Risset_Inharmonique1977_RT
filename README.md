@@ -19,7 +19,7 @@ This is a test version, in progress, so use it at your own risk.
 ## Acknowledgement
 This work was carried with the support of<br>
 Universidade Católica Portuguesa, Escola das Artes, CITAR<br>
-under the Doctoral program in Conputer Music, dir. Paulo Ferreira Lopes
+under the Doctoral program in Computer Music, dir. Paulo Ferreira Lopes
 
 
 ## References
